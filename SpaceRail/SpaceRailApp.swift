@@ -23,7 +23,7 @@ struct SpaceRailApp: App {
     private func checkForAccessibilityPermissions() {
         let trusted = AXIsProcessTrusted()
 
-        if trusted {
+        if !trusted {
             let alert = NSAlert()
             alert.messageText = "Accessibility Permission Required"
             alert.informativeText = "Please enable accessibility permissions in System Settings, then restart SpaceRail."

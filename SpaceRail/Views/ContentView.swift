@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
             }
         }
-        .padding(16)
+        .padding(20)
         .glassEffect()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
