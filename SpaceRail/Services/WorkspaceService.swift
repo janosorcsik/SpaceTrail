@@ -18,11 +18,13 @@ final class WorkspaceService {
     func setSelectedWorkspace(to workspaceId: Int) {
         guard model.selectedWorkspaceId != workspaceId else { return }
 
+        print("Set selected workspace to \(workspaceId)")
         model.selectedWorkspaceId = workspaceId
         updateAppVisibility(workspaceId: workspaceId)
     }
 
     func moveApp(bundleIdentifier: String, to workspaceId: Int) {
+        print("Move \(bundleIdentifier) to workspace \(workspaceId)")
         model.workspaces = model.workspaces.map { workspace in
             let filtered = workspace.apps.filter { $0 != bundleIdentifier }
             let isTarget = workspace.id == workspaceId
@@ -64,7 +66,10 @@ final class WorkspaceService {
             return appsInWorkspace.contains(bundleId)
         }
 
-        appsToShow.filter(\.isHidden).forEach { $0.unhide() }
+        appsToShow.filter(\.isHidden).forEach {
+            print("Unhide \($0.bundleIdentifier ?? "")")
+            $0.unhide()
+        }
 
         let appsToHide = filteredApps.filter { app in
             guard let bundleId = app.bundleIdentifier else { return false }
@@ -76,7 +81,10 @@ final class WorkspaceService {
                 app.bundleIdentifier != finderBundleId || !appsToShow.isEmpty
             }
             .filter { !$0.isHidden }
-            .forEach { $0.hide() }
+            .forEach {
+                print("Hide \($0.bundleIdentifier ?? "")")
+                $0.hide()
+            }
     }
 
     private func getRunningApps() -> [NSRunningApplication] {
