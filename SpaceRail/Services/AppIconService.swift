@@ -10,6 +10,7 @@ import Foundation
 
 class AppIconService {
     static let shared = AppIconService()
+
     private let cache = NSCache<NSString, NSImage>()
 
     func get(_ bundleIdentifier: String) -> NSImage? {

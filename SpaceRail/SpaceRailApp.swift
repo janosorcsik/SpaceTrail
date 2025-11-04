@@ -7,6 +7,7 @@
 
 import Cocoa
 import SwiftUI
+import CGEventSupervisor
 
 @main
 struct SpaceRailApp: App {
@@ -15,7 +16,6 @@ struct SpaceRailApp: App {
         NSApplication.shared.setActivationPolicy(.prohibited)
 
         checkForAccessibilityPermissions()
-        registerEventMonitors()
     }
 
     private func checkForAccessibilityPermissions() {
@@ -26,25 +26,25 @@ struct SpaceRailApp: App {
             NSWorkspace.shared.open(
                 URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
             )
+        } else {
+            registerEventMonitors()
         }
     }
 
     private func registerEventMonitors() {
-        let flagsChangeHandler = PanelService.shared.handleFlagsChanged
+        CGEventSupervisor.shared.subscribe(
+            as: "FlagsChanged",
+            to: .nsEvents(.flagsChanged),
+            using: PanelService.shared.handleFlagsChanged)
 
-        NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged, handler: flagsChangeHandler)
-        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { event in
-            flagsChangeHandler(event)
-            return event
-        }
-
-        let keyDownHandler = PanelService.shared.handleKeyDown
-
-        NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: keyDownHandler)
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-            keyDownHandler(event)
-            return event
-        }
+        CGEventSupervisor.shared.subscribe(
+            as: "KeyDown",
+            to: .nsEvents(.keyDown),
+            using: { event in
+                if PanelService.shared.handleKeyDown(event) {
+                    event.cancel()
+                }
+            })
     }
 
     var body: some Scene {

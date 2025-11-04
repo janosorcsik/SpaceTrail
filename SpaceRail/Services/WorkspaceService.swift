@@ -10,7 +10,9 @@ import Combine
 
 final class WorkspaceService {
     static let shared = WorkspaceService()
+
     private let finderBundleId = "com.apple.finder"
+
     var model = WorkspaceModel()
 
     func setSelectedWorkspace(to workspaceId: Int) {

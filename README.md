@@ -23,4 +23,4 @@ A HUD app to create Virtual Workspaces on macOS.
 
 - [ ] Persist app assignments
 - [ ] Customizable keyboard shortcuts
-- [ ] Fix beep sound when switching workspaces
+- [x] Fix beep sound when switching workspaces

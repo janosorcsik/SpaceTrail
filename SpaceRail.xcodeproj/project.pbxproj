@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		687FCF6C2EBA7236005CF277 /* CGEventSupervisor in Frameworks */ = {isa = PBXBuildFile; productRef = 687FCF6B2EBA7236005CF277 /* CGEventSupervisor */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		68B296262EB36F97008DF1CA /* SpaceRail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceRail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				687FCF6C2EBA7236005CF277 /* CGEventSupervisor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = SpaceRail;
 			packageProductDependencies = (
+				687FCF6B2EBA7236005CF277 /* CGEventSupervisor */,
 			);
 			productName = SpaceRail;
 			productReference = 68B296262EB36F97008DF1CA /* SpaceRail.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 68B2961D2EB36F97008DF1CA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				687FCF6A2EBA7236005CF277 /* XCRemoteSwiftPackageReference "CGEventSupervisor" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 68B296272EB36F97008DF1CA /* Products */;
 			projectDirPath = "";
@@ -333,6 +342,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		687FCF6A2EBA7236005CF277 /* XCRemoteSwiftPackageReference "CGEventSupervisor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephancasas/CGEventSupervisor";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		687FCF6B2EBA7236005CF277 /* CGEventSupervisor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 687FCF6A2EBA7236005CF277 /* XCRemoteSwiftPackageReference "CGEventSupervisor" */;
+			productName = CGEventSupervisor;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 68B2961E2EB36F97008DF1CA /* Project object */;
 }
