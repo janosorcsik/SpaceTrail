@@ -14,7 +14,9 @@ class AppIconService {
     private let cache = NSCache<NSString, NSImage>()
 
     func get(_ bundleIdentifier: String) -> NSImage? {
-        if let cached = cache.object(forKey: bundleIdentifier as NSString) {
+        let key = bundleIdentifier as NSString
+
+        if let cached = cache.object(forKey: key) {
             return cached
         }
 
@@ -25,7 +27,7 @@ class AppIconService {
         let icon = NSWorkspace.shared.icon(forFile: appURL.path)
         icon.size = NSSize(width: 32, height: 32)
 
-        cache.setObject(icon, forKey: bundleIdentifier as NSString)
+        cache.setObject(icon, forKey: key)
 
         return icon
     }

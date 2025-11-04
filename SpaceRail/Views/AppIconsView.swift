@@ -13,21 +13,19 @@ struct AppIconsView: View {
     var body: some View {
         HStack(spacing: 6) {
             ForEach(apps, id: \.self) { bundleId in
-                Group {
-                    if let icon = AppIconService.shared.get(bundleId) {
-                        Image(nsImage: icon)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundStyle(.tint)
-                    } else {
-                        Image(systemName: "app.dashed")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundStyle(.tint.secondary)
-                    }
+                if let icon = AppIconService.shared.get(bundleId) {
+                    Image(nsImage: icon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(.tint)
+                } else {
+                    Image(systemName: "app.dashed")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(.tint.secondary)
                 }
-                .frame(width: 32, height: 32)
             }
+            .frame(width: 32, height: 32)
         }
     }
 }

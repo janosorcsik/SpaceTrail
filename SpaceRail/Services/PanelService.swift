@@ -34,14 +34,13 @@ final class PanelService {
     }
 
     func handleKeyDown(_ event: NSEvent) -> Bool {
-        guard event.modifierFlags.intersection(overlayModifiers) == overlayModifiers else { return false}
-        guard (18...21).contains(event.keyCode) else { return false}
+        guard event.modifierFlags.intersection(overlayModifiers) == overlayModifiers else { return false }
+        guard let workspaceKey = WorkspaceKey(rawValue: event.keyCode) else { return false }
 
-        // Hacky way to get workspace number
-        let number = Int(event.keyCode) - 17
+        let number = workspaceKey.workspaceNumber
 
         if event.modifierFlags.contains(.shift) {
-            guard let focusedAppBundleIdentifier else { return true}
+            guard let focusedAppBundleIdentifier else { return true }
             WorkspaceService.shared.moveApp(bundleIdentifier: focusedAppBundleIdentifier, to: number)
         } else {
             WorkspaceService.shared.setSelectedWorkspace(to: number)

@@ -17,9 +17,11 @@ struct ContentView: View {
                     Text("\(workspace.id)")
                         .font(.title)
                         .monospaced()
-                        .foregroundStyle(workspace.id == model.selectedWorkplaceId
-                                         ? AnyShapeStyle(.tint)
-                                         : AnyShapeStyle(.foreground))
+                        .foregroundStyle(
+                            workspace.id == model.selectedWorkspaceId
+                                ? AnyShapeStyle(.tint)
+                                : AnyShapeStyle(.foreground)
+                        )
 
                     if !workspace.apps.isEmpty {
                         AppIconsView(apps: workspace.apps)

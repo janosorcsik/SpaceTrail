@@ -23,10 +23,10 @@ struct SpaceRailApp: App {
     private func checkForAccessibilityPermissions() {
         let trusted = AXIsProcessTrusted()
 
-        if !trusted {
+        if trusted {
             let alert = NSAlert()
             alert.messageText = "Accessibility Permission Required"
-            alert.informativeText = "SpaceRail needs accessibility permissions. After enabling it in System Settings, please restart the app."
+            alert.informativeText = "Please enable accessibility permissions in System Settings, then restart SpaceRail."
             alert.addButton(withTitle: "Open System Settings")
             alert.addButton(withTitle: "Quit")
 
@@ -52,12 +52,12 @@ struct SpaceRailApp: App {
 
         CGEventSupervisor.shared.subscribe(
             as: "KeyDown",
-            to: .nsEvents(.keyDown),
-            using: { event in
-                if PanelService.shared.handleKeyDown(event) {
-                    event.cancel()
-                }
-            })
+            to: .nsEvents(.keyDown)
+        ) { event in
+            if PanelService.shared.handleKeyDown(event) {
+                event.cancel()
+            }
+        }
     }
 
     var body: some Scene {

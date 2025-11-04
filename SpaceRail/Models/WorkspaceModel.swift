@@ -14,12 +14,7 @@ struct Workspace: Identifiable {
 
 @Observable
 class WorkspaceModel {
-    var workspaces: [Workspace] = [
-        Workspace(id: 1, apps: []),
-        Workspace(id: 2, apps: []),
-        Workspace(id: 3, apps: []),
-        Workspace(id: 4, apps: [])
-    ]
+    var workspaces: [Workspace] = (1...4).map { Workspace(id: $0, apps: []) }
 
-    var selectedWorkplaceId = 1
+    var selectedWorkspaceId = 1
 }
