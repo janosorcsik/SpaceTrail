@@ -62,10 +62,7 @@ struct SpaceRailApp: App {
 
     var body: some Scene {
         MenuBarExtra("SpaceRail", systemImage: "square.grid.2x2") {
-            Divider()
-            Button("Quit") {
-                NSApplication.shared.terminate(nil)
-            }
+            MenuContentView()
         }
     }
 }
